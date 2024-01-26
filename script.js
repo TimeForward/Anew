@@ -1,12 +1,22 @@
-document.getElementById("generateBtn").addEventListener("click", function(){
-  // Make an AJAX request to the server to generate a random quote via PHP script
+  
+document.getElementById('generateBtn').addEventListener("click", 
+function() {
+//Make AJAX call to generate random quote
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "generate_fortune.php", true);
+  xhr.open("GET", "https://api.quotable.io/random", true);
   xhr.onreadystatechange = function(){
-    if(xhr.readyState == 4 && xhr.status == 200){
-      // Update the quote element with the new quote
-      document.getElementById("fortune").innerText = xhr.responseText;
+    if(xhr.readyState == 4 && xhr.status == 200)
+    {
+
+      var jsonResponse = JSON.parse(xhr.responseText);
+
+      // Access the "content" property
+      var contentValue = jsonResponse.content;
+      var authorValue = jsonResponse.author;
+      document.getElementById("fortune").innerText =contentValue; 
+      document.getElementById("fortune").innerText +="\r"+authorValue; 
     }
+    
   };
   xhr.send();
 });
