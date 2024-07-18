@@ -3,7 +3,7 @@ document.getElementById('generateBtn').addEventListener("click",
 function() {
 //Make AJAX call to generate random quote
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "https://api.quotable.io/random", true);
+  xhr.open("GET", "https://zenquotes.io/api/quotes/", true);
   xhr.onreadystatechange = function(){
     if(xhr.readyState == 4 && xhr.status == 200)
     {
